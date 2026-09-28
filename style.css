@@ -1,9 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
 }
 
-h1 {
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background: url(./assets/bg.jpg);
+    background-size: cover;
+}
+
+.game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* opacity: 1; */
+    /* pointer-events: none; */
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.8s ease;
+}
+
+.game-modal .content {
+    background-color: #f1f1f1;
+    width: 420px;
     text-align: center;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.game-modal h3 {
+    font-size: 1.68rem;
+}
+
+.game-modal h4 {
+    font-size: 1.53rem;
+}
+
+.game-modal p {
+    font-size: 1.15rem;
+    margin: 15px 0 30px;
+    font-weight: 500;
+}
+
+.game-modal p b {
+    color: #005fed;
+    font-weight: 600;
+}
+
+.game-modal button {
+    color: #f1f1f1;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #3586ff;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 12px 23px;
 }
