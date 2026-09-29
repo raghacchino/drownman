@@ -18,3 +18,10 @@ const resetGame = () => {
     wordContainer.innerHTML = currentWord.split("").map(() => `<li class="letter"></li>`).join("")
     water.style.minHeight = "5%"
 }
+
+const getRandomWord = () => {
+    const { word } = wordList[Math.floor(Math.random() * wordList.length)]
+    currentWord = word
+    resetGame()
+    wordContainer.innerHTML = word.split("").map(() => `<li called="letter"></li>`).join("")
+}
