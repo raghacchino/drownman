@@ -36,3 +36,30 @@ const gameOver = (isVictory) => {
         gameModal.style.pointerEvents = "auto"
     }, 300)
 }
+
+const initGame = (button, clickedLetter) => {
+    if (currentWord.includes(clickedLetter)) {
+        [...currentWord].forEach((letter, index) => {
+            if (letter === clickedLetter) {
+                correctLetters.push(letter)
+                wordContainer.querySelectorAll("li")[index].innerHTML = letter
+                wordContainer.querySelectorAll("li")[index].classList.add("guessed")
+            }
+        })
+    } else {
+        wrongGuesses++
+    }
+
+    water.style.minHeight = wrongGuesses === 0 ? "5%" :
+                            wrongGuesses === 1 ? "25%" :
+                            wrongGuesses === 2 ? "40%" :
+                            wrongGuesses === 3 ? "55%" :
+                            wrongGuesses === 4 ? "75%" :
+                            "calc(100% - 80px)"
+
+    button.disabled = true
+    guessesText.innerHTML = `${wrongGuesses} / ${maxGuesses}`
+
+    if (wrongGuesses === maxGuesses) return gameOver(false)
+    if (correctLetters.length === currentWord.length) return gameOver(true)
+}
