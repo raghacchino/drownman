@@ -25,3 +25,14 @@ const getRandomWord = () => {
     resetGame()
     wordContainer.innerHTML = word.split("").map(() => `<li called="letter"></li>`).join("")
 }
+
+const gameOver = (isVictory) => {
+    setTimeout(() => {
+        const modalText = isVictory ? `You found the word:` : `The correct word was:`
+        gameModal.querySelector("h4").innerHTML = `${isVictory ? "Congrats!" : "Sorry"}`
+        gameModal.querySelector("h3").innerHTML = `${isVictory ? "You survived :)" : "You drowned :("}`
+        gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`
+        gameModal.style.opacity = 1
+        gameModal.style.pointerEvents = "auto"
+    }, 300)
+}
