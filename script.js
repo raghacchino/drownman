@@ -1,12 +1,12 @@
 const wordContainer = document.querySelector(".word-container")
-const guessesText = document.querySelector(".guesses-text")
+const guessesText = document.querySelector(".guesses-text b")
 const keyboard = document.querySelector(".keyboard")
 const gameModal = document.querySelector(".game-modal")
 const playAgain = document.querySelector(".play-again")
 const water = document.querySelector(".water")
-const maxGuesses = 5
 
 let currentWord, correctLetters = [], wrongGuesses = 0
+const maxGuesses = 5
 
 const resetGame = () => {
     correctLetters = []
@@ -23,14 +23,14 @@ const getRandomWord = () => {
     const { word } = wordList[Math.floor(Math.random() * wordList.length)]
     currentWord = word
     resetGame()
-    wordContainer.innerHTML = word.split("").map(() => `<li called="letter"></li>`).join("")
+    wordContainer.innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("")
 }
 
 const gameOver = (isVictory) => {
     setTimeout(() => {
         const modalText = isVictory ? `You found the word:` : `The correct word was:`
-        gameModal.querySelector("h4").innerHTML = `${isVictory ? "Congrats!" : "Sorry"}`
-        gameModal.querySelector("h3").innerHTML = `${isVictory ? "You survived :)" : "You drowned :("}`
+        gameModal.querySelector("h4").innerText = `${isVictory ? "Congrats!" : "Sorry"}`
+        gameModal.querySelector("h3").innerText = `${isVictory ? "You survived:)" : "You drowned:("}`
         gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`
         gameModal.style.opacity = 1
         gameModal.style.pointerEvents = "auto"
@@ -42,7 +42,7 @@ const initGame = (button, clickedLetter) => {
         [...currentWord].forEach((letter, index) => {
             if (letter === clickedLetter) {
                 correctLetters.push(letter)
-                wordContainer.querySelectorAll("li")[index].innerHTML = letter
+                wordContainer.querySelectorAll("li")[index].innerText = letter
                 wordContainer.querySelectorAll("li")[index].classList.add("guessed")
             }
         })
@@ -66,8 +66,11 @@ const initGame = (button, clickedLetter) => {
 
 for (let i = 97; i <= 122; i++) {
     const button = document.createElement("button")
-    button.innerHTML = String.fromCharCode(i)
+    button.innerText = String.fromCharCode(i)
     keyboard.appendChild(button)
 
     button.addEventListener("click", e => initGame(e.target, String.fromCharCode(i)))
 }
+
+getRandomWord()
+playAgain.addEventListener("click", getRandomWord)
