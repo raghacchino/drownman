@@ -63,3 +63,11 @@ const initGame = (button, clickedLetter) => {
     if (wrongGuesses === maxGuesses) return gameOver(false)
     if (correctLetters.length === currentWord.length) return gameOver(true)
 }
+
+for (let i = 97; i <= 122; i++) {
+    const button = document.createElement("button")
+    button.innerHTML = String.fromCharCode(i)
+    keyboard.appendChild(button)
+
+    button.addEventListener("click", e => initGame(e.target, String.fromCharCode(i)))
+}
